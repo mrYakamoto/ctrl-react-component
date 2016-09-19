@@ -1,0 +1,15 @@
+#!/bin/bash
+
+printf "Running tests:\n\n"
+
+printf "Running ESLint:\n\n"
+./scripts/lint
+lintResult=$?
+
+printf "Running integration tests:\n\n"
+jest --coverage
+integrationResult=$?
+
+echo "Finished tests."
+
+! (( $lintResult | $integrationResult ))

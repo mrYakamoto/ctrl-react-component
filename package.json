@@ -1,0 +1,67 @@
+{
+  "name": "ctrl-react-component",
+  "version": "1.0.0",
+  "description": "A React component that works with the ctrl workflow.",
+  "main": "ctrl-react-component.jsx",
+  "dependencies": {
+    "ctrl-react-content-consumer": "^2.0.0",
+    "debug": "^2.2.0",
+    "react": "^15.3.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "babel-jest": "^15.0.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "codacy-coverage": "^2.0.0",
+    "ctrl-react-router": "^2.0.2",
+    "ctrl-react-web-socket": "^2.0.1",
+    "eslint": "^3.5.0",
+    "eslint-config-ctrl": "^2.0.1",
+    "eslint-config-ctrl-react": "^2.0.0",
+    "jest": "^15.1.1",
+    "react-addons-test-utils": "^15.3.1",
+    "react-dom": "^15.3.1"
+  },
+  "scripts": {
+    "lint": "./scripts/lint",
+    "posttest": "./scripts/posttest",
+    "test": "./scripts/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martin-experiments/ctrl-react-component.git"
+  },
+  "keywords": [
+    "ctrl",
+    "react",
+    "router"
+  ],
+  "author": "Martin Experiments LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/martin-experiments/ctrl-react-component/issues"
+  },
+  "homepage": "https://github.com/martin-experiments/ctrl-react-component#readme",
+  "jest": {
+    "testRegex": "tests/integration/.*.js",
+    "testURL": "http://localhost",
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ],
+    "preprocessorIgnorePatterns": [],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ],
+    "verbose": true
+  },
+  "nyc": {
+    "extension": [
+      ".jsx"
+    ]
+  }
+}
