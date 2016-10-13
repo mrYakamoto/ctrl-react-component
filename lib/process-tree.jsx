@@ -9,10 +9,10 @@ export default function processTree(tree) {
     return
   }
 
-  const children = tree.props && tree.props.children
+  const children = tree.props && React.Children.toArray(tree.props.children)
 
   if (this.context.router.filterChildren(tree)) {
-    if (Array.isArray(children)) {
+    if (Array.isArray(children) && children.length > 0) {
       return React.cloneElement(tree, {
         children: React.Children
           .map(children, this.processTree)

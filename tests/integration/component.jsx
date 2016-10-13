@@ -84,6 +84,30 @@ class Nav extends CtrlComponent {
   }
 }
 
+class SingleChildPermanent extends CtrlComponent {
+  renderFiltered() {
+    return (
+      <div>{this.props.children}</div>
+    )
+  }
+}
+
+class SingleChildHome extends CtrlComponent {
+  renderFiltered() {
+    return (
+      <div>{this.props.children}</div>
+    )
+  }
+}
+
+class ChildTest extends CtrlComponent {
+  renderFiltered() {
+    return (
+      <div/>
+    )
+  }
+}
+
 class Container extends CtrlComponent {
   renderFiltered() {
     return (
@@ -99,6 +123,21 @@ class Container extends CtrlComponent {
           content={this.getContent('pages.about')}
           routeFilter={(route) => route[0] === 'about'}
         />
+        <SingleChildPermanent content={null}>
+          <ChildTest
+            content={null}
+            routeFilter={(route) => route.length === 0}
+          />
+        </SingleChildPermanent>
+        <SingleChildHome
+          content={null}
+          routeFilter={(route) => route.length === 0}
+        >
+          <ChildTest
+            content={null}
+            routeFilter={(route) => route.length === 1}
+          />
+        </SingleChildHome>
       </div>
     )
   }
@@ -127,29 +166,43 @@ afterEach(() => {
 })
 
 test('should render components', () => {
-  checkChild(client, Nav, (nav) => {
+  checkChild(client, Nav, true, (nav) => {
     expect(nav.refs.loggedIn).toBeUndefined()
   })
   checkChild(client, HomePage)
   checkChild(client, AboutPage, false)
+  checkChild(client, SingleChildPermanent, true, (single) => {
+    checkChild(single, ChildTest)
+  })
+  checkChild(client, SingleChildHome, true, (single) => {
+    checkChild(single, ChildTest, false)
+  })
 })
 
 test('should render components', () => {
   router.updateRoute('/about')
   
-  checkChild(client, Nav, (nav) => {
+  checkChild(client, Nav, true, (nav) => {
     expect(nav.refs.loggedIn).toBeUndefined()
   })
   checkChild(client, HomePage, false)
-  checkChild(client, AboutPage, true)
+  checkChild(client, AboutPage)
+  checkChild(client, SingleChildPermanent, true, (single) => {
+    checkChild(single, ChildTest, false)
+  })
+  checkChild(client, SingleChildHome, false)
 })
 
 test('should render logged in components', () => {
   router.updateRoute('/about?loggedIn=true')
   
-  checkChild(client, Nav, (nav) => {
+  checkChild(client, Nav, true, (nav) => {
     expect(nav.refs.loggedIn).toBeDefined()
   })
   checkChild(client, HomePage, false)
-  checkChild(client, AboutPage, true)
+  checkChild(client, AboutPage)
+  checkChild(client, SingleChildPermanent, true, (single) => {
+    checkChild(single, ChildTest, false)
+  })
+  checkChild(client, SingleChildHome, false)
 })
