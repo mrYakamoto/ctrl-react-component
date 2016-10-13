@@ -8,6 +8,14 @@ A React component that works with the `ctrl` workflow.
 
 ## Installation
 
+[Yarn](https://yarnpkg.com) is recommended for installation.
+
+```bash
+$ yarn add --dev ctrl-react-router
+```
+
+But you can still use npm:
+
 ```bash
 $ npm install --save-dev ctrl-react-component
 ```
